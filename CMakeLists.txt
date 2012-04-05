@@ -1,0 +1,20 @@
+CMAKE_MINIMUM_REQUIRED (VERSION 2.6)
+PROJECT (cpprestful)
+
+OPTION (EXAMPLES "Build examples" ON)
+
+FIND_PACKAGE (CURL REQUIRED)
+
+SET (cpprestful_SOURCES
+	"src/cpprestful.cpp")
+
+INCLUDE_DIRECTORIES (${CMAKE_CURRENT_SOURCE_DIR}/include)
+
+ADD_LIBRARY (cpprestful
+	${cpprestful_SOURCES})
+TARGET_LINK_LIBRARIES (cpprestful
+	${CURL_LIBRARY})
+
+IF (EXAMPLES)
+	ADD_SUBDIRECTORY (examples)
+ENDIF (EXAMPLES)
